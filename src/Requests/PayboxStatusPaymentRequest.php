@@ -1,6 +1,6 @@
 <?php
 
-namespace Dosarkz\Paybox\Requests;
+namespace Tripsome\Paybox\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

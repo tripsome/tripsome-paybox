@@ -6,7 +6,7 @@
 ## Installation 
 
  - Install the package via composer:
- `composer require dosarkz/laravel-paybox`
+ `composer require tripsome/paybox`
  - Publish configuration file:
  `php artisan vendor:publish --tag paybox-config`
  - Set `merchant_id` and `secret_key` in the env file
@@ -24,7 +24,7 @@ PAYBOX_RESULT_URL=
 ```
 > Generate new order
 ```php
-use Dosarkz\Paybox\Facades\Paybox;
+use Tripsome\Paybox\Facades\Paybox;
 
 class OrdersController extends Controller
 {

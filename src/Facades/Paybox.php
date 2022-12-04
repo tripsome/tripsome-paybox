@@ -1,5 +1,5 @@
 <?php
-namespace Dosarkz\Paybox\Facades;
+namespace Tripsome\Paybox\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

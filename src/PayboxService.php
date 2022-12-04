@@ -1,10 +1,10 @@
 <?php
 
-namespace Dosarkz\Paybox;
+namespace Tripsome\Paybox;
 
 
-use Dosarkz\Paybox\Requests\NewPaymentPayboxRequest;
-use Dosarkz\Paybox\Requests\PayboxStatusPaymentRequest;
+use Tripsome\Paybox\Requests\NewPaymentPayboxRequest;
+use Tripsome\Paybox\Requests\PayboxStatusPaymentRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;

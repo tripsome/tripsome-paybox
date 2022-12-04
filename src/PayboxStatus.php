@@ -1,6 +1,6 @@
 <?php
 
-namespace Dosarkz\Paybox;
+namespace Tripsome\Paybox;
 
 class PayboxStatus
 {

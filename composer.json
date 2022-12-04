@@ -1,11 +1,15 @@
 {
-  "name": "dosarkz/laravel-paybox",
+  "name": "tripsome/paybox",
   "description": "Acquiring system for accepting payments PayBox.money",
   "minimum-stability": "dev",
   "authors": [
     {
       "name": "dosarkz",
       "email": "ashenov.e@gmail.com"
+    },
+    {
+      "name": "madyanmalfi",
+      "email": "madyan@tripsome.com"
     }
   ],
   "keywords": ["Laravel", "Paybox"],
@@ -19,18 +23,18 @@
   },
   "autoload": {
     "psr-4": {
-      "Dosarkz\\Paybox\\": "src/"
+      "Tripsome\\Paybox\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Dosarkz\\Paybox\\Tests\\": "tests"
+      "Tripsome\\Paybox\\Tests\\": "tests"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Dosarkz\\Paybox\\PayboxServiceProvider"
+        "Tripsome\\Paybox\\PayboxServiceProvider"
       ]
     }
   },

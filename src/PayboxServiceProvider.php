@@ -1,5 +1,5 @@
 <?php
-namespace Dosarkz\Paybox;
+namespace Tripsome\Paybox;
 
 use Illuminate\Support\ServiceProvider;
 
