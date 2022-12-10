@@ -7,6 +7,9 @@ return [
     'routes' => [
         'init_payment' => 'init_payment.php',
         'status_payment' => 'get_status2.php',
+        'complete_order' => 'do_capture.php',
+        'refund_order' => 'revoke.php',
+        'reverse_order' => 'cancel.php',
     ],
     'currency' => env('PAYBOX_CURRENCY', 'KZT')
 ];
