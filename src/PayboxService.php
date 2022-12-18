@@ -8,6 +8,9 @@ use Tripsome\Paybox\Requests\PayboxStatusPaymentRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Tripsome\Paybox\Requests\CompletePaymentRequest;
+use Tripsome\Paybox\Requests\RefundPaymentRequest;
+use Tripsome\Paybox\Requests\ReversePaymentRequest;
 
 /**
  * @property PayboxStatus $status
@@ -46,6 +49,58 @@ class PayboxService
         return $this->request('post', $this->fullPath('init_payment'), $data);
     }
 
+
+    /**
+     * Create Completion request  (clearing request)
+     * @param array $data
+     * @return \SimpleXMLElement
+     * @throws ValidationException
+     * @throws \Exception
+     */
+    public function complete(array $data = []): \SimpleXMLElement
+    {
+        $validator = Validator::make($data, ((new CompletePaymentRequest())->rules()));
+        if ($validator->fails())
+            throw new ValidationException($validator);
+
+        $this->generateSig($data, 'do_capture.php');
+        return $this->request('post', $this->fullPath('complete_order'), $data);
+    }
+
+    /**
+     * Create Completion request  (clearing request)
+     * @param array $data
+     * @return \SimpleXMLElement
+     * @throws ValidationException
+     * @throws \Exception
+     */
+    public function refund(array $data = []): \SimpleXMLElement
+    {
+        $validator = Validator::make($data, ((new RefundPaymentRequest())->rules()));
+        if ($validator->fails())
+            throw new ValidationException($validator);
+
+        $this->generateSig($data, 'revoke.php');
+        return $this->request('post', $this->fullPath('refund_order'), $data);
+    }
+
+    /**
+     * Create Completion request  (clearing request)
+     * @param array $data
+     * @return \SimpleXMLElement
+     * @throws ValidationException
+     * @throws \Exception
+     */
+    public function reverse(array $data = []): \SimpleXMLElement
+    {
+        $validator = Validator::make($data, ((new ReversePaymentRequest())->rules()));
+        if ($validator->fails())
+            throw new ValidationException($validator);
+
+        $this->generateSig($data, 'cancel.php');
+        return $this->request('post', $this->fullPath('reverse_order'), $data);
+    }
+
     /**
      * Получение информации о платеже
      * @param $data
@@ -61,6 +116,7 @@ class PayboxService
         $req = $this->request('get', $this->fullPath('status_payment'), $data);
         $this->setStatus(new PayboxStatus());
         $this->status->setPgStatus($req->pg_status);
+        $this->status->setPgIsPreAuth($req->pg_captured == 0 ? true : false);
         $this->status->setPgPaymentId($req->pg_payment_id);
         $this->status->setPgTransactionStatus($req->pg_transaction_status);
         return $this;

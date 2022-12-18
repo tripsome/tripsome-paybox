@@ -35,6 +35,7 @@ class PayboxStatus
     public string $pg_create_date;
     public string $pg_salt;
     public string $pg_sig;
+    public bool $pg_is_pre_auth;
 
     /**
      * @return string
@@ -50,6 +51,14 @@ class PayboxStatus
     public function setPgStatus(string $pg_status): void
     {
         $this->pg_status = $pg_status;
+    }
+
+     /**
+     * @param string $pg_is_pre_auth
+     */
+    public function setPgIsPreAuth(bool $pg_is_pre_auth): void
+    {
+        $this->pg_is_pre_auth = $pg_is_pre_auth;
     }
 
     /**
